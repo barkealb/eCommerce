@@ -3,7 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const path = require("path");
-
+require('dotenv').config()
 
 //Middleware
 
@@ -20,7 +20,8 @@ app.use('/kids', require('./routes/kidsRouter.js'));
 
 //Connect to DB
 
-mongoose.connect('mongodb+srv://barkeal:cwaRFV9dA5iev62H@cluster0.uwng6zw.mongodb.net/?retryWrites=true&w=majority', console.log('Connected to Database'))
+mongoose.connect(process.env.MONGO_URL,
+    () => console.log('Connected to Database'))
 
 
 //Error Handling
